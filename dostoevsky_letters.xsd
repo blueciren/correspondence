@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Dostoevsky_letters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="metadata"/>
+        <xs:element ref="body"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="metadata" type="source"/>
+  <xs:complexType name="source">
+    <xs:sequence>
+      <xs:element ref="source"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="source" type="xs:string"/>
+  <xs:element name="body">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="year"/>
+        <xs:element ref="official_letters"/>
+        <xs:element ref="collective"/>
+        <xs:element ref="miscellaneous"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="year">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="letter"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="id"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="id">
+    <xs:attribute name="id" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="letter">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="link"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="addresser"/>
+      <xs:attributeGroup ref="addressee"/>
+      <xs:attributeGroup ref="date"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="addresser">
+    <xs:attribute name="addresser" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="Достоевский Ф. М."/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="addressee">
+    <xs:attribute name="addressee" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="date">
+    <xs:attribute name="date" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="link">
+    <xs:complexType>
+      <xs:attributeGroup ref="a"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="a">
+    <xs:attribute name="a" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="official_letters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="letter"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="collective">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="letter"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="miscellaneous">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="letter"/>
+        <xs:element ref="distorted_in_publication"/>
+        <xs:element ref="unpublished_letters"/>
+        <xs:element ref="book_inscriptions"/>
+        <xs:element ref="photo_inscriptions"/>
+        <xs:element ref="address_notes"/>
+        <xs:element ref="explanations_on_Petrushevtsy"/>
+        <xs:element ref="from_maikov"/>
+        <xs:element ref="lost_and_unfound_letters"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="distorted_in_publication">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="unpublished_letters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="letter"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="book_inscriptions">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="letter"/>
+        <xs:element ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="photo_inscriptions">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="letter"/>
+        <xs:element ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="address_notes">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="explanations_on_Petrushevtsy">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="letter"/>
+        <xs:element ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="from_maikov">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lost_and_unfound_letters">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="letter"/>
+        <xs:element ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
