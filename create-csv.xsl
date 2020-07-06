@@ -5,7 +5,7 @@
     version="3.0">
     <xsl:output method="text"/>
     <xsl:function name="kiun:quote" as="xs:string">
-        <xsl:param name="input" as="item()"/>
+        <xsl:param name="input" as="xs:string"/>
         <xsl:variable name="result">
             <xsl:text>"</xsl:text>
             <xsl:sequence select="$input"/>
@@ -22,7 +22,7 @@
             <xsl:text>,</xsl:text>
             <xsl:sequence select="kiun:quote(current-grouping-key())"/>
             <xsl:text>,</xsl:text>
-            <xsl:sequence select="kiun:quote(count(current-group()))"/>
+            <xsl:sequence select="count(current-group())"/>
             <xsl:text>&#x0a;</xsl:text>
         </xsl:for-each-group>
     </xsl:template>
