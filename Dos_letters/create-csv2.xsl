@@ -13,17 +13,28 @@
         </xsl:variable>
         <xsl:sequence select="$result"/>
     </xsl:function>
+    
     <xsl:variable name="all-letters" as="document-node()+" select="collection('split-files')"/>
+    
     <xsl:template match="/">
-        <xsl:text>"Addressor", "Addressee", "Count"&#x0a;</xsl:text>
-        <xsl:for-each-group select="$all-letters//letter" group-by="@addressee">
-            <xsl:sort select="current-grouping-key()"/>
+        <xsl:text>"Addressor", "Addressee", "Year"&#x0a;</xsl:text>
+        <xsl:for-each select="$all-letters//letter">
+            <xsl:sort select="@addressee"/>
             <xsl:sequence select="kiun:quote('Достоевский Ф. М.')"/>
             <xsl:text>,</xsl:text>
-            <xsl:sequence select="kiun:quote(current-grouping-key())"/>
+            <xsl:sequence select="kiun:quote(@addressee)"/>
+            <!-- <xsl:text>,</xsl:text>
+            <xsl:sequence select="count(@addressee)"/>-->
             <xsl:text>,</xsl:text>
-            <xsl:sequence select="count(current-group())"/>
+            <xsl:sequence select="year[descendant::letter/@addressee]/@id"/>
+            
+            <!-- 
+           <xsl:sequence select="year[descendant::letter[@addressee]]/@id"/>
+            //year[descendant::letter[@addressee="Достоевскому М. А."]]/@id
+            //year[descendant::letter[(current-group())]]/@id
+            -->
+            
             <xsl:text>&#x0a;</xsl:text>
-        </xsl:for-each-group>
+        </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
