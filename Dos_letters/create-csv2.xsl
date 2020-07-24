@@ -23,15 +23,14 @@
             <xsl:sequence select="kiun:quote('Достоевский Ф. М.')"/>
             <xsl:text>,</xsl:text>
             <xsl:sequence select="kiun:quote(@addressee)"/>
-            <!-- <xsl:text>,</xsl:text>
-            <xsl:sequence select="count(@addressee)"/>-->
             <xsl:text>,</xsl:text>
-            <xsl:sequence select="year[descendant::letter/@addressee]/@id"/>
+            <xsl:sequence select="kiun:quote(@date)"/>
             
             <!-- 
+                why they do not work? 
            <xsl:sequence select="year[descendant::letter[@addressee]]/@id"/>
-            //year[descendant::letter[@addressee="Достоевскому М. А."]]/@id
-            //year[descendant::letter[(current-group())]]/@id
+            <xsl:sequence select="@date"/>
+         
             -->
             
             <xsl:text>&#x0a;</xsl:text>
