@@ -17,12 +17,14 @@
     <xsl:variable name="all-letters" as="document-node()+" select="collection('split-files')"/>
     
     <xsl:template match="/">
-        <xsl:text>"Addressor", "Addressee", "Year"&#x0a;</xsl:text>
+        <xsl:text>"Addressor", "Addressee", "count", "Year"&#x0a;</xsl:text>
         <xsl:for-each select="$all-letters//letter">
             <xsl:sort select="@addressee"/>
             <xsl:sequence select="kiun:quote('Достоевский Ф. М.')"/>
             <xsl:text>,</xsl:text>
             <xsl:sequence select="kiun:quote(@addressee)"/>
+            <xsl:text>,</xsl:text>
+            <xsl:sequence select="count(@addressee)"/>
             <xsl:text>,</xsl:text>
             <xsl:sequence select="kiun:quote(@date)"/>
             
